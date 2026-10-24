@@ -1,0 +1,226 @@
+{
+  "User": [
+    {
+      "_id": "5610787e-74da-458d-b661-3f601524d690",
+      "createdAt": "2026-10-24T22:46:55.160Z",
+      "updatedAt": "2026-10-24T22:46:55.160Z",
+      "name": "Alex Morgan",
+      "email": "admin@hcmlite.local",
+      "passwordHash": "$2a$10$pOD94wvJWp2di.KvpOw7A.rCs04Tr7rq45tLtOaIG/n1mDe.dd7bC",
+      "role": "Admin",
+      "department": "People"
+    },
+    {
+      "_id": "de35a389-c602-4def-9422-219058feff49",
+      "createdAt": "2026-10-24T22:46:55.268Z",
+      "updatedAt": "2026-10-24T22:46:55.268Z",
+      "name": "Jamie Lee",
+      "email": "hr@hcmlite.local",
+      "passwordHash": "$2a$10$UZfACurdlM93z1LbIEKr1Ov8XL3pca7vgUm6rcnl8NrYEOOa/LarK",
+      "role": "HR",
+      "department": "People"
+    },
+    {
+      "_id": "31c0ba7d-59e5-441b-b31f-111340c42e5b",
+      "createdAt": "2026-10-24T22:46:55.375Z",
+      "updatedAt": "2026-10-24T22:46:55.375Z",
+      "name": "Taylor Reed",
+      "email": "employee@hcmlite.local",
+      "passwordHash": "$2a$10$3A7/33VI.uh6LSf05UM/FepKvRhDWdGc7dYkpevBAuS6gK6hcWw.S",
+      "role": "Employee",
+      "department": "Engineering"
+    }
+  ],
+  "Employee": [
+    {
+      "_id": "01bdab4d-3fa1-49ff-a91a-0121c9d553dd",
+      "createdAt": "2026-10-24T22:46:55.376Z",
+      "updatedAt": "2026-10-24T22:46:55.376Z",
+      "name": "Olivia Rhye",
+      "email": "olivia@hcmlite.local",
+      "role": "Product Designer",
+      "department": "Design",
+      "status": "Active"
+    },
+    {
+      "_id": "13cf431e-cbe4-45b2-9770-0ff3381cd5e9",
+      "createdAt": "2026-10-24T22:46:55.377Z",
+      "updatedAt": "2026-10-24T22:46:55.377Z",
+      "name": "Phoenix Baker",
+      "email": "phoenix@hcmlite.local",
+      "role": "Engineering Lead",
+      "department": "Engineering",
+      "status": "Active"
+    },
+    {
+      "_id": "772ae1b5-863b-4626-a41f-45ed4adea5b9",
+      "createdAt": "2026-10-24T22:46:55.378Z",
+      "updatedAt": "2026-10-24T22:46:55.378Z",
+      "name": "Lana Steiner",
+      "email": "lana@hcmlite.local",
+      "role": "HR Manager",
+      "department": "People",
+      "status": "On leave"
+    },
+    {
+      "_id": "d0f93a84-d142-4e2d-a190-9ca9f32ade50",
+      "createdAt": "2026-10-24T22:46:55.379Z",
+      "updatedAt": "2026-10-24T22:46:55.379Z",
+      "name": "Demi Wilkinson",
+      "email": "demi@hcmlite.local",
+      "role": "Marketing Lead",
+      "department": "Marketing",
+      "status": "Active"
+    },
+    {
+      "_id": "b5e71f7a-2e01-412a-9a95-54040d9e5b97",
+      "createdAt": "2026-10-24T22:46:55.380Z",
+      "updatedAt": "2026-10-24T22:46:55.380Z",
+      "name": "Candice Wu",
+      "email": "candice@hcmlite.local",
+      "role": "UX Researcher",
+      "department": "Design",
+      "status": "Active"
+    },
+    {
+      "_id": "f6479c90-13fd-446b-b49a-adba893ec7a2",
+      "createdAt": "2026-10-24T22:46:55.381Z",
+      "updatedAt": "2026-10-24T22:46:55.381Z",
+      "name": "Natali Craig",
+      "email": "natali@hcmlite.local",
+      "role": "People Partner",
+      "department": "People",
+      "status": "Active"
+    }
+  ],
+  "LeaveRequest": [
+    {
+      "_id": "341bc0a6-5cf9-4d89-a683-01270d28c1d6",
+      "createdAt": "2026-10-24T22:46:55.382Z",
+      "updatedAt": "2026-10-24T22:46:55.382Z",
+      "employeeName": "Lana Steiner",
+      "type": "Annual leave",
+      "startDate": "2026-10-28",
+      "endDate": "2026-10-30",
+      "status": "Pending"
+    },
+    {
+      "_id": "a2d4ec81-5257-45a1-84c8-bcfb53fe6f81",
+      "createdAt": "2026-10-24T22:46:55.383Z",
+      "updatedAt": "2026-10-24T22:46:55.383Z",
+      "employeeName": "Phoenix Baker",
+      "type": "Sick leave",
+      "startDate": "2026-10-20",
+      "endDate": "2026-10-20",
+      "status": "Approved"
+    },
+    {
+      "_id": "f3cbd3de-d3e9-4f73-97b8-6b9ea1a6d7b4",
+      "createdAt": "2026-10-24T22:46:55.384Z",
+      "updatedAt": "2026-10-24T22:46:55.384Z",
+      "employeeName": "Olivia Rhye",
+      "type": "Annual leave",
+      "startDate": "2026-11-02",
+      "endDate": "2026-11-04",
+      "status": "Pending"
+    }
+  ],
+  "Announcement": [
+    {
+      "_id": "a3f46a8d-1cd2-4a71-b5a8-5200829b05fd",
+      "createdAt": "2026-10-24T22:46:55.387Z",
+      "updatedAt": "2026-10-24T22:46:55.387Z",
+      "title": "October all-hands meeting",
+      "message": "Join the monthly company update on Friday.",
+      "createdAtLabel": "2026-10-20"
+    },
+    {
+      "_id": "30782e76-050e-4ca1-a0e8-85eb6f8cb3a7",
+      "createdAt": "2026-10-24T22:46:55.388Z",
+      "updatedAt": "2026-10-24T22:46:55.388Z",
+      "title": "Holiday calendar updated",
+      "message": "The upcoming holiday calendar is available in Organization Setup.",
+      "createdAtLabel": "2026-10-18"
+    }
+  ],
+  "AuditLog": [
+    {
+      "_id": "396e071f-05ef-406a-9f60-e70864e8e287",
+      "createdAt": "2026-10-24T22:47:35.744Z",
+      "updatedAt": "2026-10-24T22:47:35.744Z",
+      "actor": "admin@hcmlite.local",
+      "action": "LOGIN",
+      "entity": "session",
+      "entityId": "5610787e-74da-458d-b661-3f601524d690",
+      "timestamp": "2026-10-24T22:47:35.744Z"
+    },
+    {
+      "_id": "b7d38bbb-89b8-471f-81d9-3bd96ec63ca3",
+      "createdAt": "2026-10-24T22:49:01.532Z",
+      "updatedAt": "2026-10-24T22:49:01.532Z",
+      "actor": "admin@hcmlite.local",
+      "action": "UPSERT",
+      "entity": "organization_setting",
+      "entityId": "6c156698-e92d-41bf-9e4c-57511f8dece6",
+      "timestamp": "2026-10-24T22:49:01.532Z"
+    },
+    {
+      "_id": "9348414d-e7e7-4af3-ba2b-43e0d9c1d7db",
+      "createdAt": "2026-10-24T23:02:52.809Z",
+      "updatedAt": "2026-10-24T23:02:52.809Z",
+      "actor": "admin@hcmlite.local",
+      "action": "LOGIN",
+      "entity": "session",
+      "entityId": "5610787e-74da-458d-b661-3f601524d690",
+      "timestamp": "2026-10-24T23:02:52.809Z"
+    },
+    {
+      "_id": "84ff633e-af2b-4573-8fd1-6517fa71bd09",
+      "createdAt": "2026-10-24T23:06:20.880Z",
+      "updatedAt": "2026-10-24T23:06:20.880Z",
+      "actor": "admin@hcmlite.local",
+      "action": "LOGIN",
+      "entity": "session",
+      "entityId": "5610787e-74da-458d-b661-3f601524d690",
+      "timestamp": "2026-10-24T23:06:20.880Z"
+    }
+  ],
+  "AttendanceRecord": [
+    {
+      "_id": "1426f083-8214-450d-b121-e5b5ba484447",
+      "createdAt": "2026-10-24T22:46:55.385Z",
+      "updatedAt": "2026-10-24T22:46:55.385Z",
+      "employeeName": "Olivia Rhye",
+      "employeeEmail": "olivia@hcmlite.local",
+      "date": "2026-10-24",
+      "checkIn": "09:02",
+      "checkOut": "",
+      "status": "Present"
+    },
+    {
+      "_id": "119579c6-aaee-4ce4-9563-80bcd2c818fc",
+      "createdAt": "2026-10-24T22:46:55.386Z",
+      "updatedAt": "2026-10-24T22:46:55.386Z",
+      "employeeName": "Phoenix Baker",
+      "employeeEmail": "phoenix@hcmlite.local",
+      "date": "2026-10-24",
+      "checkIn": "09:17",
+      "checkOut": "",
+      "status": "Late"
+    }
+  ],
+  "PayrollRecord": [],
+  "OrgSetting": [
+    {
+      "_id": "6c156698-e92d-41bf-9e4c-57511f8dece6",
+      "createdAt": "2026-10-24T22:49:01.531Z",
+      "key": "holiday:abdullah",
+      "value": {
+        "type": "Holiday",
+        "name": "Abdullah",
+        "details": "hello i am an engenner"
+      },
+      "updatedAt": "2026-10-24T22:49:01.531Z"
+    }
+  ]
+}

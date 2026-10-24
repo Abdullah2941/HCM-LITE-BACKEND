@@ -1,0 +1,25 @@
+// Lightweight JSON-file model adapter. No MongoDB server required.
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import crypto from 'node:crypto';
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../data');
+const file = path.join(root, 'hcm-data.json');
+const collections = ['User','Employee','LeaveRequest','Announcement','AuditLog','AttendanceRecord','PayrollRecord','OrgSetting'];
+let state = Object.fromEntries(collections.map(k=>[k,[]]));
+let writeQueue = Promise.resolve();
+async function persist(){ await fs.mkdir(root,{recursive:true}); const snapshot=JSON.stringify(state,null,2); writeQueue=writeQueue.then(()=>fs.writeFile(file,snapshot,'utf8')); return writeQueue; }
+export async function initializeFileStore(){ await fs.mkdir(root,{recursive:true}); try { const parsed=JSON.parse(await fs.readFile(file,'utf8')); for(const k of collections) if(Array.isArray(parsed[k])) state[k]=parsed[k]; } catch(e) { if(e.code!=='ENOENT') throw e; await persist(); } }
+const clone = x => x == null ? x : JSON.parse(JSON.stringify(x));
+function matches(doc, filter={}) { return Object.entries(filter).every(([key,val])=>{ if(key==='$or') return val.some(part=>matches(doc,part)); const got=doc[key]; if(val && typeof val==='object' && !Array.isArray(val)){ if('$in' in val) return val.$in.includes(got); if('$regex' in val){const re=new RegExp(val.$regex,val.$options||'');return re.test(String(got||''));} if('$ne' in val) return got!==val.$ne; } return String(got??'')===String(val??''); }); }
+class Query {
+ constructor(model,filter={},one=false){this.model=model;this.filter=filter;this.one=one;this.sortSpec=null;this.limitN=null;this.skipN=0;}
+ sort(s){this.sortSpec=s;return this} limit(n){this.limitN=n;return this} skip(n){this.skipN=n;return this} select(){return this} lean(){return this} then(resolve,reject){return this.exec().then(resolve,reject)}
+ async exec(){let rows=this.model.rows().filter(d=>matches(d,this.filter));if(this.sortSpec){const [[k,v]]=Object.entries(this.sortSpec);rows.sort((a,b)=>{const aa=a[k]??'',bb=b[k]??'';return (aa>bb?1:aa<bb?-1:0)*v;});}if(this.skipN)rows=rows.slice(this.skipN);if(this.limitN!=null)rows=rows.slice(0,this.limitN);const out=rows.map(d=>this.model.doc(d));return this.one?(out[0]||null):out;}}
+function makeModel(name){return {
+ rows:()=>state[name], doc(raw){const data=clone(raw);Object.defineProperty(data,'save',{enumerable:false,value:async function(){const idx=state[name].findIndex(x=>x._id===this._id);this.updatedAt=new Date().toISOString();if(idx<0)state[name].push(strip(this));else state[name][idx]=strip(this);await persist();return this;}});Object.defineProperty(data,'toObject',{enumerable:false,value:function(){return strip(this)}});return data;},
+ find(filter={}){return new Query(this,filter)}, findOne(filter={}){return new Query(this,filter,true)}, async findById(id){const d=state[name].find(x=>String(x._id)===String(id));return d?this.doc(d):null}, async findByIdAndUpdate(id,update){const d=state[name].find(x=>String(x._id)===String(id));if(!d)return null;Object.assign(d,clone(update),{updatedAt:new Date().toISOString()});await persist();return this.doc(d)}, async findByIdAndDelete(id){const i=state[name].findIndex(x=>String(x._id)===String(id));if(i<0)return null;const [d]=state[name].splice(i,1);await persist();return this.doc(d)}, async findOneAndUpdate(filter,update,opts={}){let d=state[name].find(x=>matches(x,filter));if(!d&&opts.upsert){d={_id:crypto.randomUUID(),createdAt:new Date().toISOString()};state[name].push(d)}if(!d)return null;Object.assign(d,clone(update),{updatedAt:new Date().toISOString()});await persist();return this.doc(d)}, async create(input){const now=new Date().toISOString();const d={_id:crypto.randomUUID(),createdAt:now,updatedAt:now,...clone(input)};state[name].push(d);await persist();return this.doc(d)}, async insertMany(inputs){const out=[];for(const input of inputs)out.push(await this.create(input));return out}, async countDocuments(filter={}){return state[name].filter(d=>matches(d,filter)).length}, async exists(filter={}){return state[name].some(d=>matches(d,filter))?{_id:'exists'}:null}, async deleteMany(filter={}){const before=state[name].length;state[name]=state[name].filter(d=>!matches(d,filter));await persist();return {deletedCount:before-state[name].length}}
+};}
+function strip(obj){const out={};for(const [k,v] of Object.entries(obj))if(k!=='save'&&k!=='toObject')out[k]=clone(v);return out;}
+export const User=makeModel('User'); export const Employee=makeModel('Employee'); export const LeaveRequest=makeModel('LeaveRequest'); export const Announcement=makeModel('Announcement'); export const AuditLog=makeModel('AuditLog'); export const AttendanceRecord=makeModel('AttendanceRecord'); export const PayrollRecord=makeModel('PayrollRecord'); export const OrgSetting=makeModel('OrgSetting');
+export const toItem=doc=>{const item=doc?.toObject?doc.toObject():clone(doc||{});const {_id,__v,passwordHash,createdAt,updatedAt,...rest}=item;return {id:String(_id||item.id||''),...rest};};

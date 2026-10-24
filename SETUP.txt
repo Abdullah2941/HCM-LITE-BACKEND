@@ -1,0 +1,17 @@
+HCM Lite Backend — JSON file storage (no MongoDB required)
+
+1. Install Node.js 18+.
+2. Copy .env.example to .env.
+3. Set JWT_SECRET to a long random value. Add GEMINI_API_KEY only if you want the AI Assistant.
+4. In this folder run: npm install
+5. Run: npm run dev
+6. Data is persisted in backend/data/hcm-data.json. Back up this file regularly.
+
+Demo logins:
+Admin: admin@hcmlite.local / Admin123!
+HR: hr@hcmlite.local / HrDemo123!
+Employee: employee@hcmlite.local / Employee123!
+
+Face scan note: Attendance uses browser camera capture as a presence-confirmation step, then marks attendance for the authenticated account. It does NOT perform biometric identity matching. The captured frame is not uploaded or persisted. Camera permission is required; camera access works on localhost or HTTPS.
+
+This JSON-file mode is intended for local development/small demos, not multi-server production deployment. Keep .env and data files private.

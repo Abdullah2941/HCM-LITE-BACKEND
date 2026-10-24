@@ -1,0 +1,10 @@
+import { Router } from 'express';
+import { createEmployee, listEmployees, updateEmployee, deleteEmployee } from '../controllers/employeeController.js';
+import { allowRoles, requireAuth } from '../middleware/auth.js';
+const router = Router();
+router.use(requireAuth);
+router.get('/', listEmployees);
+router.post('/', allowRoles('Admin', 'HR'), createEmployee);
+router.patch('/:id', allowRoles('Admin', 'HR'), updateEmployee);
+router.delete('/:id', allowRoles('Admin', 'HR'), deleteEmployee);
+export default router;
