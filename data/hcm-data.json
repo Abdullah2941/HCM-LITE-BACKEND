@@ -183,6 +183,26 @@
       "entity": "session",
       "entityId": "5610787e-74da-458d-b661-3f601524d690",
       "timestamp": "2026-10-24T23:06:20.880Z"
+    },
+    {
+      "_id": "a8e1e809-78e2-4f6a-9db5-588a95b64d6d",
+      "createdAt": "2026-10-25T00:51:12.625Z",
+      "updatedAt": "2026-10-25T00:51:12.625Z",
+      "actor": "admin@hcmlite.local",
+      "action": "LOGIN",
+      "entity": "session",
+      "entityId": "5610787e-74da-458d-b661-3f601524d690",
+      "timestamp": "2026-10-25T00:51:12.625Z"
+    },
+    {
+      "_id": "3a7903e7-f575-4e0d-b3f1-53c9af92b8a0",
+      "createdAt": "2026-10-25T00:51:40.395Z",
+      "updatedAt": "2026-10-25T00:51:40.395Z",
+      "actor": "admin@hcmlite.local",
+      "action": "LOGIN",
+      "entity": "session",
+      "entityId": "5610787e-74da-458d-b661-3f601524d690",
+      "timestamp": "2026-10-25T00:51:40.395Z"
     }
   ],
   "AttendanceRecord": [
